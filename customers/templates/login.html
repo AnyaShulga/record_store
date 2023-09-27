@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Login
+{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+    {% if not user.is_authenticated %}
+    <div class="row my-4">
+        <div class="col col-12 col-md-8 col-lg-6">
+            <form method="post" action="{% url 'customers:login' %}">
+                <table>
+                {% csrf_token %}
+                {{ form.as_table }}
+                </table>
+                <input class="btn btn-primary" type="submit" value="Login">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+        </div>
+    </div>
+    <p class="my-2">Not registered yet? <a href="{% url 'customers:registration' %}">Sign up.</a></p>
+    {% else %}
+        {% if not user.is_staff %}
+        You've logged in already. You can visit <a href="{% url 'customers:data' user.pk %}">your account</a>.
+        {% else %}
+        You've logged in already.
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delivery address
+{% endblock %}
+
+{% block body %}
+<h3>Please enter the delivery address</h3>
+<form class="my-2" method="post" action="{% url 'customers:delivery_address' customer.pk %}">
+  <table>
+    {% csrf_token %}
+    {{ form.as_table }}
+  </table>
+  <input type="hidden" name="next" value="{{ request.GET.next }}">
+  <input class="btn btn-primary" type="submit" value="Confirm">
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+  <div class="row col-md-12">
+    {% for record in object_list %}
+    <div class="col-md-4">
+      <img src="{% static record.cover_path %}" class="img-fluid rounded mx-1 my-3" alt="Album cover">
+      <h5 class="card-title"><a href="{% url 'records:details' record.pk %}">
+        <p class="my-1">{{ record.artist }}</p><p class="my-1"><i>{{ record.album }}</i></p></a></h5>
+        <p class="card-text my-1">{{ record.price }}</p>
+      {% if not user.is_staff %}
+        <a href="{% url 'records:add_to_cart' record.pk %}?next={{ request.path }}" class="btn btn-primary">Add to cart</a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

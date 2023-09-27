@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+Order details
+{% endblock %}
+
+{% block body %}
+<div>
+  <div class="container my-4">
+    <h1>Order # {{order.pk }}</h1>
+    <div class="row">
+      <div class="col-3 fs-5">
+        Status:
+      </div>
+      <div class="col fs-5">
+        {{ order.status }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 fs-5">
+        Date:
+      </div>
+      <div class="col fs-5">
+        {{ order.date }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 fs-5">
+        Records:
+      </div>
+      <div class="col-5 fs-5">
+        {% for record in order.record.all %}
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item">
+              {{ record.artist }} - {{ record.album }}
+              </li>
+            </ul>
+            {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

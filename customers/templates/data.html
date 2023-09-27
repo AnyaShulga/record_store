@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  My account
+{% endblock %}
+
+{% block body %}
+<div>
+  <div class="container my-4">
+    <div class="row">
+      <div class="col-3 fs-5">
+        First name:
+      </div>
+      <div class="col fs-5">
+        {{ user.first_name }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 fs-5">
+        Last name:
+      </div>
+      <div class="col fs-5">
+        {{ user.last_name }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 fs-5">
+        Email address:
+      </div>
+      <div class="col-5 fs-5">
+        {{ user.email }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 fs-5">
+        Delivery address:
+      </div>
+      <div class="col-5 fs-5">
+        {{ customer.address }}
+      </div>
+    </div>
+    <a class="btn btn-secondary my-4"
+     href="{% url 'customers:delivery_address' customer.pk %}?next={{ request.path }}">
+    Change delivery address
+  </a>
+  </div>
+</div>
+{% endblock %}

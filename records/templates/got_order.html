@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Thanks for order
+{% endblock %}
+
+{% block body %}
+<h1>Thank you for order!</h1>
+<p class="my-1">We'll let you know when your order has been shipped.</p>
+<p class="my-1">To see details please visit <a href="{% url 'records:orders' %}">this link.</a></p>
+{% endblock %}

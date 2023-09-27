@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+Delete from cart
+{% endblock %}
+
+{% block body %}
+<h1>Delete record</h1>
+<form method="post">
+  {% csrf_token %}
+  <p>Are you sure you want to delete record {{ record.artist }} - {{ record.album }} from cart?</p>
+  {{ form }}
+  <input class="btn btn-danger" type="submit" value="Delete">
+  <a class="btn btn-secondary"
+     href="{% url 'records:cart' %}">
+    Back to cart
+  </a>
+</form>
+{% endblock %}

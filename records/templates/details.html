@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container my-2">
+  <div class="row">
+    <div class="col-md-3">
+      <img class="img-fluid rounded" src="{% static record.cover_path %}" alt="Album cover">
+    </div>
+    <div class="col-md-4">
+      <table>
+        <tr>
+          <td colspan="2"><h5>{{ record.artist }} <i>{{ record.album }}</i></h5></td>
+        </tr>
+        <tr>
+          <td>Year:</td>
+          <td>{{ record.year }}</td>
+        </tr>
+        <tr>
+          <td>Condition:</td>
+          <td>{{ record.condition }}</td>
+        </tr>
+        <tr>
+          <td>Record label:</td>
+          <td>{{ record.record_label }}</td>
+        </tr>
+        <tr>
+          <td style="text-align:left; vertical-align:top">Genres:</td>
+          <td>{% for genre in record.genre.all %}
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item">
+              {{ genre }}
+              </li>
+            </ul>
+            {% endfor %}
+          </td>
+        </tr>
+        <tr>
+          <td>Price:</td>
+          <td>{{ record.price }}</td>
+        </tr>
+        <tr>
+          <td colspan="2">{% if user.is_staff %}
+    <a class="btn btn-outline-danger" href="{% url 'records:delete' record.pk %}">Delete </a>
+    {% else %}
+    <a class="btn btn-primary" href="{% url 'records:add_to_cart' record.pk %}?next={{ request.path }}">Add to cart</a>
+    {% endif %}
+    <a class="btn btn-secondary" href="{% url 'records:list' %}">Back to the list of records</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

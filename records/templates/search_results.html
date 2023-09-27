@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+Search results
+{% endblock %}
+
+{% block body %}
+<h1 class="my-4">Search results:</h1>
+<ul>
+  {% for object in object_list %}
+  <li><h3><a href="{% url 'records:details' object.pk %}">{{ object }}</a></h3></li>
+  {% endfor %}
+</ul>
+{% endblock %}

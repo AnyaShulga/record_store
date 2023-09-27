@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+Add to cart {{ record.album }}?
+{% endblock %}
+
+{% block body %}
+<h1 class="my-4">Add record to the cart</h1>
+<form method="POST">
+    <p>Add {{ record.artist }} - {{ record.album }} to cart?</p>
+    {% csrf_token %}
+    {{ form }}
+    <input type="hidden" name="next" value="{{ request.GET.next }}">
+    <button class="btn btn-primary" type="submit">Add</button>
+    <a class="btn btn-secondary" href="{% url 'records:list' %}">Back to the catalogue</a>
+</form>
+{% endblock %}

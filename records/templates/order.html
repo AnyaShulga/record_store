@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+Orders
+{% endblock %}
+
+{% block body %}
+{% if orders %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Status</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  {% for order in orders %}
+  <tbody>
+    <tr>
+      <td><a href="{% url 'records:order_details' order.pk %}">{{ order.pk }}</a></td>
+      <td>{{ order.status }}</td>
+      <td>{{ order.date }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+{% else %}
+  <h2 class="my-4">No order placed yet</h2>
+{% endif %}
+</table>
+{% endblock %}

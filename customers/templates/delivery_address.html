@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delivery address
+{% endblock %}
+
+{% block body %}
+<div class="container my-2">
+  <h3> Please check the delivery address</h3>
+  <div class="row">
+    <div class="col-3 fs-5">
+      Delivery address:
+    </div>
+    <div class="col-5 fs-5">
+      {{ customer.address }}
+    </div>
+  </div>
+  <div class="col-md-4 my-2">
+    <a class="btn btn-outline-danger" href="{% url 'records:got_order' %}">Submit </a>
+    <a class="btn btn-primary" href="{% url 'customers:delivery_address' customer.pk %}?next={{ request.path }}">Change delivery address</a>
+  </div>
+</div>
+{% endblock %}
